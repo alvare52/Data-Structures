@@ -11,15 +11,27 @@ return elements in Last In First Out order.
    implementing a Stack?
 """
 class Stack:
+    # storage = []
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = list()
 
     def __len__(self):
-        pass
+        return len(self.storage)
 
     def push(self, value):
-        pass
+        self.storage.append(value)
 
     def pop(self):
-        pass
+        if len(self.storage) > 0:
+            return self.storage.pop()
+
+    def __str__(self):
+        return f"{self.storage}"
+
+my_stack = Stack()
+my_stack.push("Jim")
+my_stack.push("Tom")
+my_stack.push("Frank")
+print(my_stack.pop())
+print(my_stack)
