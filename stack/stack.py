@@ -12,47 +12,47 @@ return elements in Last In First Out order.
 """
 
 # Dynamic Array
-# class Stack:
-#     def __init__(self):
-#         self.size = 0
-#         self.storage = list()
-
-#     def __len__(self):
-#         return len(self.storage)
-
-#     def push(self, value):
-#         self.storage.append(value)
-
-#     def pop(self):
-#         if len(self.storage) > 0:
-#             return self.storage.pop()
-
-#     def __str__(self):
-#         return f"{self.storage}"
-
-# Linked List
 class Stack:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.storage = list()
 
     def __len__(self):
-        temp = self.storage.head
-        count = 0
-        while (temp):
-            count += 1
-            temp = temp.next_node
-        return count
+        return len(self.storage)
 
     def push(self, value):
-        self.storage.add_to_tail(value)
+        self.storage.append(value)
 
     def pop(self):
-        print("pop called")
-        return self.storage.remove_tail()
+        if len(self.storage) > 0:
+            return self.storage.pop()
 
     def __str__(self):
         return f"{self.storage}"
+
+# Linked List
+# class Stack:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = LinkedList()
+
+#     def __len__(self):
+#         temp = self.storage.head
+#         count = 0
+#         while (temp):
+#             count += 1
+#             temp = temp.next_node
+#         return count
+
+#     def push(self, value):
+#         self.storage.add_to_tail(value)
+
+#     def pop(self):
+#         print("pop called")
+#         return self.storage.remove_tail()
+
+#     def __str__(self):
+#         return f"{self.storage}"
 
 # Node + LinkedList
 class Node:
@@ -133,6 +133,7 @@ class LinkedList:
         self.tail = current
         #
         self.tail.next_node = None
+        # or self.tail.set_next(None) 
         #
         return value
 

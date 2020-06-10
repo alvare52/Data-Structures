@@ -15,40 +15,40 @@ Stretch: What if you could only use instances of your Stack class to implement t
 """
 
 # Dynamic Array
-# class Queue:
-#     def __init__(self):
-#         self.size = 0
-#         self.storage = list()
-    
-#     def __len__(self):
-#         return len(self.storage)
-
-#     def enqueue(self, value):
-#         self.storage.append(value)
-
-#     def dequeue(self):
-#         if len(self.storage) > 0:
-#             return self.storage.pop(0)
-
-# Linked List
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.storage = list()
     
     def __len__(self):
-        temp = self.storage.head
-        count = 0
-        while (temp):
-            count += 1
-            temp = temp.next_node
-        return count
+        return len(self.storage)
 
     def enqueue(self, value):
-        self.storage.add_to_tail(value)
+        self.storage.append(value)
 
     def dequeue(self):
-        return self.storage.remove_head()
+        if len(self.storage) > 0:
+            return self.storage.pop(0)
+
+# Linked List
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = LinkedList()
+    
+#     def __len__(self):
+#         temp = self.storage.head
+#         count = 0
+#         while (temp):
+#             count += 1
+#             temp = temp.next_node
+#         return count
+
+#     def enqueue(self, value):
+#         self.storage.add_to_tail(value)
+
+#     def dequeue(self):
+#         return self.storage.remove_head()
 
 # Node + LinkedList
 class Node:
