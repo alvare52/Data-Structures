@@ -17,45 +17,58 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        # check if the incoming value is less than the current node's value
+
+        # LEFT
         if value < self.value:
-            # we know we need to go left
-            # how do we know when we need to recurse again, or when to stop?
+            # if there's no node on the left, stop here and make a new node
             if not self.left:
-                # we can park our value here
                 self.left = BSTNode(value)
             else:
-                # we cant' park here
                 # keep searching
                 self.left.insert(value)
+    
+        # RIGHT
         else:
-            # we know we need to go right
+            # if there's no node on the right, stop here and make a new node
             if not self.right:
                 self.right = BSTNode(value)
             else:
+                # keep searching
                 self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        # when we start searching, self will be the root
-        # compare the target against self
-        # Criteria for returning False: we know we need to go in one direction
+    
+        # self is the starting point (root)
+        # target is what we pass in to see if it's in the tree
+
+        # return False if we know we need to go in one direction
         # but there's nothing in the left or right direction
+
+        # once target is equal to our current node, we stop the recursion
         if target == self.value:
             return True
+
+        # LEFT
         if target < self.value:
-            # go left if left is a BTSNode
+            # if we hit a dead end, that means the target isn't in the tree
             if not self.left:
                 return False
+            # if current node != target and there's still a left node, keep going
             return self.left.contains(target)
+
+        # RIGHT
         else:
+            # if there are no more right nodes, we hit a dead end and target isn't inside tree
             if not self.right:
                 return False
+            # if current node != target and there's still a right node, keep going
             return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
+
         # check the whole right branch until we're at the last leaf
         if not self.right:
             # return node we're on, this is what ends the recursion
