@@ -75,22 +75,31 @@ class DoublyLinkedList:
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
     def add_to_tail(self, value):
+        # wrap value given in a ListNode
         new_node = ListNode(value, None, None)
         self.length += 1
+        # check if there is no head and no tail (empty DLL)
         if not self.head and not self.tail:
             self.head = new_node
             self.tail = new_node
+        # non empty DLL
         else:
+            # make old tail the new tail's prev
             new_node.prev = self.tail
+            # make old tail's next = to our new tail node
             self.tail.next = new_node
+            # make old tail = to our new tail last
             self.tail = new_node
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
     def remove_from_tail(self):
+        # grab tail's value
         value = self.tail.value
+        # delete the tail, and - 1
         self.delete(self.tail)
+        # return value we just deleted, so it's like pop
         return value
 
     """Removes the input node from its current spot in the 
@@ -106,6 +115,7 @@ class DoublyLinkedList:
         else:
             node.delete()
             self.length -= 1
+        # add_to_head has a += 1 in it
         self.add_to_head(value)
 
     """Removes the input node from its current spot in the 
@@ -144,21 +154,21 @@ class DoublyLinkedList:
     """Returns the highest value currently in the list"""
     def get_max(self):
 
-        max = None
-        temp = None
+        # max = None
+        # temp = None
 
-        temp = max = self.head
+        # temp = max = self.head
 
-        while temp is not None:
-            if temp.value > max.value:
-                max = temp
-            temp = temp.next
-        return max.value
+        # while temp is not None:
+        #     if temp.value > max.value:
+        #         max = temp
+        #     temp = temp.next
+        # return max.value
         # # init a variable that will keep track of the largest element we've seen so far
-        # current_max = self.head.value
-        # current = self.head.next
-        # while current is not None:
-        #     if current.value > current_max:
-        #         current_max = current_max.value
-        #     current = current.next
-        # return current_max
+        current_max = self.head.value
+        current = self.head.next
+        while current is not None:
+            if current.value > current_max:
+                current_max = current.value
+            current = current.next
+        return current_max
