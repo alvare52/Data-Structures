@@ -17,14 +17,35 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # check if the incoming value is less than the current node's value
+        if value < self.value:
+            # we know we need to go left
+            # how do we know when we need to recurse again, or when to stop?
+            if not self.left:
+                # we can park our value here
+                self.left = BSTNode(value)
+            else:
+                # we cant' park here
+                # keep searching
+                self.left.insert(value)
+        else:
+            # we know we need to go right
+            if not self.right:
+                self.right = BSTNode(value)
+            else:
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
+        # when we start searching, self will be the root
+        # compare the target against self
+        # Criteria for returning False: we know we need to go in one direction
+        # but there's nothing in the left or right direction
         if target == self.value:
             return True
         if target < self.value:
+            # go left if left is a BTSNode
             if not self.left:
                 return False
             return self.left.contains(target)
@@ -32,14 +53,31 @@ class BSTNode:
             if not self.right:
                 return False
             return self.right.contains(target)
-            
+
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # check the whole right branch until we're at the last leaf
+        if not self.right:
+            # return node we're on, this is what ends the recursion
+            return self.value
+        else:
+            # keep er goin
+            return self.right.get_max()
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+
+        # fn is going to be the function we pass in
+        # call the fn on the value at this node
+        fn(self.value)
+
+        # pass function to the left and right children
+        # recursion stops if self.left/right is None
+        if self.left:
+            self.left.for_each(fn)
+
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
